@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+import sys
+
+def factorize(n):
+
+    factors = []
+    for i in range(2, n//2 + 1):
+        if n % i == 0:
+            factors.append((i, n//i))
+    return factors
+
+def main(filename):
+
+    with open(filename, 'r') as file:
+        numbers = file.readlines()
+
+    for num in numbers:
+        num = int(num)
+        factor_pairs = factorize(num)
+        for pair in factor_pairs:
+            print(f"{num}={pair[0]}*{pair[1]}")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        sys.exit(1)
+    main(sys.argv[1])
